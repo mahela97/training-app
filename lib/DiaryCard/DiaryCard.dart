@@ -40,7 +40,7 @@ class _DiaryCardState extends State<DiaryCard> {
   Widget build(BuildContext context) {
     final MediaQueryData deviceInfo = MediaQuery.of(context);
     return Container(
-      width: double.infinity,
+      width: deviceInfo.size.width,
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
