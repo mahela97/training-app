@@ -58,9 +58,9 @@ class _DiaryHomeState extends State<DiaryHome> {
                   fillColor: Color(0xff2E97DC),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(50.0),
+                       Radius.circular(50.0),
                     ),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: BorderSide(color:Colors.white),
                   ),
                   filled: true,
                   hintStyle: new TextStyle(color: Colors.grey[800]),
@@ -76,11 +76,12 @@ class _DiaryHomeState extends State<DiaryHome> {
             child: Material(
               color: Color(0xff149CDF),
               child: TextField(
+
                 controller: this.descripController,
                 decoration: InputDecoration(
                   fillColor: Color(0xff2E97DC),
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
+                    borderSide: BorderSide(color:Colors.transparent),
                       borderRadius: BorderRadius.all(Radius.circular(50.0))),
                   filled: true,
                   hintStyle: new TextStyle(color: Colors.grey[800]),
@@ -96,12 +97,11 @@ class _DiaryHomeState extends State<DiaryHome> {
                 onPressed: onSubmit,
                 child: Text("Submit"),
                 style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xff0075EB)),
+                  backgroundColor:MaterialStateProperty.all<Color>(Color(0xff0075EB)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    )))),
+                            borderRadius: BorderRadius.circular(18.0),
+                            )))),
           )
         ],
       ),
