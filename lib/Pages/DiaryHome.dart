@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:training_app/BLoC/Bloc.dart';
 import 'package:training_app/DiaryCard/DiaryCard.dart';
 
 class DiaryHome extends StatefulWidget {
@@ -49,12 +50,12 @@ class _DiaryHomeState extends State<DiaryHome> {
     if (!validateTitle && !validateDescrip) {
       setState(() {
         mainAxisAlignment = MainAxisAlignment.start;
-        cards.add(DiaryCard(
-            title: this.title,
-            subtitle: "mahela",
-            description: this.description,
-            cardColor: Color(0xffB3E9FE)));
       });
+      bloc.addCard(DiaryCard(
+          title: this.title,
+          subtitle: "mahela",
+          description: this.description,
+          cardColor: Color(0xffB3E9FE)));
       this.title = "";
       this.description = "";
     }
@@ -140,10 +141,19 @@ class _DiaryHomeState extends State<DiaryHome> {
                             borderRadius: BorderRadius.circular(18.0),
                           )))),
                 ),
-                Container(
-                  child: Column(
-                    children: cards,
-                  ),
+                StreamBuilder(
+                  stream: bloc.getListCards,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Container(
+                        child: Column(
+                          children: snapshot.data,
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
                 )
               ],
             ),
