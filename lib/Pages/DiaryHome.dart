@@ -64,8 +64,6 @@ class _DiaryHomeState extends State<DiaryHome> {
   }
 
   DiaryCard buildItem(DocumentSnapshot doc) {
-    print("ggaa");
-    print(doc.data());
     return DiaryCard(
         title: doc.data()['title'],
         subtitle: doc.data()['subtitle'],
