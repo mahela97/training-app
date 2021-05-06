@@ -77,15 +77,12 @@ class _DiaryHomeState extends State<DiaryHome> {
   }
 
   void onFocusChange() {
-    if (focusNodeTitle.hasFocus) {
+    if (focusNodeTitle.hasFocus || focusNodeDescription.hasFocus) {
       setState(() {
         heightDescrip = 100;
       });
-    } else if (!focusNodeTitle.hasFocus && focusNodeDescription.hasFocus) {
-      setState(() {
-        heightDescrip = 100;
-      });
-    } else if (!focusNodeDescription.hasFocus && !focusNodeTitle.hasFocus) {
+    }
+    else{
       setState(() {
         heightDescrip = 0;
       });

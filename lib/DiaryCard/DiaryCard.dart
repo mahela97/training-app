@@ -48,60 +48,58 @@ class _DiaryCardState extends State<DiaryCard> {
         border: Border.all(width: 4, color: Color(0xff009FE0)),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(5),
-              child: Text(
-                widget.title,
-                maxLines: 2,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.none,
-                  fontSize: 25,
-                ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: Text(
+              widget.title,
+              maxLines: 2,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.none,
+                fontSize: 25,
               ),
             ),
-            Padding(
-                padding: EdgeInsets.all(5),
-                child: Text(widget.subtitle,
-                    maxLines: 1,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Color(0xff668490),
-                      decoration: TextDecoration.none,
-                      fontSize: 20,
-                    ))),
-            Padding(
+          ),
+          Padding(
               padding: EdgeInsets.all(5),
-              child: Text(widget.description,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: Colors.black,
-                      decoration: TextDecoration.none,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w100),
+              child: Text(widget.subtitle,
+                  maxLines: 1,
                   textAlign: TextAlign.left,
-                  maxLines: this.maxLines),
-            ),
-            Padding(
-              padding: EdgeInsets.all(5),
-              child: TextButton(
-                  child: Text(
-                    showToggle,
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                        color: Color(0xff1A2125), fontWeight: FontWeight.bold),
-                  ),
-                  onPressed: showMore),
-            ),
-          ],
-        ),
+                  style: TextStyle(
+                    color: Color(0xff668490),
+                    decoration: TextDecoration.none,
+                    fontSize: 20,
+                  ))),
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: Text(widget.description,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: Colors.black,
+                    decoration: TextDecoration.none,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w100),
+                textAlign: TextAlign.left,
+                maxLines: this.maxLines),
+          ),
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: TextButton(
+                child: Text(
+                  showToggle,
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                      color: Color(0xff1A2125), fontWeight: FontWeight.bold),
+                ),
+                onPressed: showMore),
+          ),
+        ],
       ),
     );
   }

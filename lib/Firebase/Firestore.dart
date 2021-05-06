@@ -3,14 +3,11 @@ import 'dart:async';
 import 'package:training_app/DiaryCard/DiaryCard.dart';
 
 class DBbloc {
-
   final db = FirebaseFirestore.instance;
   final _diaryDataSaveController = StreamController<DiaryCard>();
-  final _diaryDataReadController = StreamController<List<DiaryCard>>();
 
   get addData => _diaryDataSaveController.sink.add;
   get saveData => _diaryDataSaveController.stream;
-
 
   DBbloc() {
     _diaryDataSaveController.stream.listen((event) {
