@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:training_app/DiaryCard/DiaryCard.dart';
+import 'package:training_app/Dirabase/Firestore.dart';
 
 class Bloc {
   List<DiaryCard> cards = [];
@@ -16,8 +17,10 @@ class Bloc {
 
   Bloc() {
     _diaryCardController.stream.listen((event) {
+      print("gg");
       cards.add(event);
       addListCards(cards);
+      dbBloc.addData(event);
     });
   }
 }
