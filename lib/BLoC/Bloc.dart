@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:training_app/DiaryCard/DiaryCard.dart';
-import 'package:training_app/Dirabase/Firestore.dart';
+import 'package:training_app/Firebase/Firestore.dart';
 
 class Bloc {
   //

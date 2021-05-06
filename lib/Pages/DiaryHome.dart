@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:training_app/BLoC/Bloc.dart';
 import 'package:training_app/DiaryCard/DiaryCard.dart';
-import 'package:training_app/Dirabase/Firestore.dart';
+import 'package:training_app/Firebase/Firestore.dart';
 
 class DiaryHome extends StatefulWidget {
   @override
@@ -19,6 +19,9 @@ class _DiaryHomeState extends State<DiaryHome> {
   List<DiaryCard> cards = [];
   bool validateTitle = false;
   bool validateDescrip = false;
+  final focusNodeTitle = FocusNode();
+  final focusNodeDescription = FocusNode();
+  double heightDescrip = 0;
 
   @override
   void dispose() {
@@ -60,6 +63,7 @@ class _DiaryHomeState extends State<DiaryHome> {
           cardColor: Color(0xffB3E9FE)));
       this.title = "";
       this.description = "";
+      heightDescrip = 0;
     }
   }
 
@@ -72,6 +76,34 @@ class _DiaryHomeState extends State<DiaryHome> {
     //int.parse(doc.data()['cardColor'])
   }
 
+  void onFocusChange() {
+    if (focusNodeTitle.hasFocus) {
+      setState(() {
+        heightDescrip = 100;
+      });
+    } else if (!focusNodeTitle.hasFocus && focusNodeDescription.hasFocus) {
+      setState(() {
+        heightDescrip = 100;
+      });
+    } else if (!focusNodeDescription.hasFocus && !focusNodeTitle.hasFocus) {
+      setState(() {
+        heightDescrip = 0;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    focusNodeTitle.addListener(() {
+      onFocusChange();
+    });
+    focusNodeDescription.addListener(() {
+      onFocusChange();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     //MediaQueryData deviceInfo = MediaQuery.of(context);
@@ -80,11 +112,15 @@ class _DiaryHomeState extends State<DiaryHome> {
         resizeToAvoidBottomInset: false,
         body: Container(
           decoration: BoxDecoration(
-            color: Color(0xff149CDF), //Color(0xff149CDF)
+            //color: Color(0xff149CDF),
+            image: DecorationImage(
+                image: AssetImage("lib/Images/wallpaper.jpg"),
+                fit: BoxFit.fill),
+            //Color(0xff149CDF)
           ),
           width: double.infinity,
           height: double.infinity,
-          margin: EdgeInsets.fromLTRB(10, 24, 10, 10),
+          margin: EdgeInsets.fromLTRB(0, 24, 0, 0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: mainAxisAlignment,
@@ -93,8 +129,9 @@ class _DiaryHomeState extends State<DiaryHome> {
                   width: 300,
                   margin: EdgeInsets.all(10),
                   child: Material(
-                    color: Color(0xff149CDF),
+                    color: Colors.transparent,
                     child: TextField(
+                      focusNode: focusNodeTitle,
                       controller: this.titleController,
                       decoration: InputDecoration(
                         fillColor: Color(0xff2E97DC),
@@ -116,10 +153,12 @@ class _DiaryHomeState extends State<DiaryHome> {
                 ),
                 Container(
                   width: 300,
+                  height: heightDescrip,
                   margin: EdgeInsets.all(10),
                   child: Material(
-                    color: Color(0xff149CDF),
+                    color: Colors.transparent,
                     child: TextField(
+                      focusNode: focusNodeDescription,
                       maxLines: 3,
                       controller: this.descripController,
                       decoration: InputDecoration(
@@ -152,20 +191,6 @@ class _DiaryHomeState extends State<DiaryHome> {
                             borderRadius: BorderRadius.circular(18.0),
                           )))),
                 ),
-                // StreamBuilder(
-                //   stream: bloc.getListCards,
-                //   builder: (context, snapshot) {
-                //     if (snapshot.hasData) {
-                //       return Container(
-                //         child: Column(
-                //           children: snapshot.data,
-                //         ),
-                //       );
-                //     } else {
-                //       return Container();
-                //     }
-                //   },
-                // )
                 StreamBuilder<QuerySnapshot>(
                   stream: dbBloc.db.collection('DiaryCards').snapshots(),
                   builder: (context, snapshot) {
