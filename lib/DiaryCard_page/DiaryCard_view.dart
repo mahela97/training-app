@@ -10,10 +10,11 @@ class DiaryCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final diaryCardBloc = BlocProvider.of<DiaryCardBloc>(context);
-
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       decoration: BoxDecoration(
           color: diaryCardBloc.state.cardColor,
+          border: Border.all(width: 4, color: Color(0xff009FE0)),
           borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,10 +25,14 @@ class DiaryCardView extends StatelessWidget {
             maxLines: 2,
             textAlign: TextAlign.left,
             style: TextStyle(
-              color: Color(0xff668490),
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
               decoration: TextDecoration.none,
-              fontSize: 20,
+              fontSize: 25,
             ),
+          ),
+          SizedBox(
+            height: 10,
           ),
           Text(diaryCardBloc.state.subtitle,
               maxLines: 1,
@@ -37,6 +42,9 @@ class DiaryCardView extends StatelessWidget {
                 decoration: TextDecoration.none,
                 fontSize: 20,
               )),
+          SizedBox(
+            height: 10,
+          ),
           BlocBuilder<DiaryCardBloc, DiaryCardState>(
             builder: (context, state) {
               return Text(diaryCardBloc.state.description,
@@ -49,6 +57,9 @@ class DiaryCardView extends StatelessWidget {
                   textAlign: TextAlign.left,
                   maxLines: state.maxLines);
             },
+          ),
+          SizedBox(
+            height: 10,
           ),
           BlocBuilder<DiaryCardBloc, DiaryCardState>(
             builder: (context, state) {
