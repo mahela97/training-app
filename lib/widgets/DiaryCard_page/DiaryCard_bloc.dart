@@ -1,25 +1,30 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:fcode_common/fcode_common.dart';
 import 'package:flutter/material.dart';
+import 'DiaryCard_event.dart';
+import 'DiaryCard_state.dart';
 
-import 'DiaryHome_event.dart';
-import 'DiaryHome_state.dart';
+class DiaryCardBloc extends Bloc<DiaryCardEvent, DiaryCardState> {
+  static final log = Log("DiaryCardBloc");
 
-class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
-  static final log = Log("DiaryHomeBloc");
-
-  DiaryHomeBloc(BuildContext context) : super(DiaryHomeState.initialState);
+  DiaryCardBloc(BuildContext context) : super(DiaryCardState.initialState);
 
   @override
-  Stream<DiaryHomeState> mapEventToState(DiaryHomeEvent event) async* {
+  Stream<DiaryCardState> mapEventToState(DiaryCardEvent event) async* {
     switch (event.runtimeType) {
       case ErrorEvent:
         final error = (event as ErrorEvent).error;
         log.e('Error: $error');
         yield state.clone(error: "");
         yield state.clone(error: error);
+        break;
+      case ShowToggleEvent:
+        final showToggle = (event as ShowToggleEvent).showToggle;
+        final maxLines = (event as ShowToggleEvent).maxLines;
+        final isVisible = (event as ShowToggleEvent).isVisible;
+        yield state.clone(
+            showToggle: showToggle, maxLines: maxLines, isVisible: isVisible);
         break;
     }
   }

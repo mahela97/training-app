@@ -14,6 +14,6 @@ class ShowToggleEvent extends DiaryCardEvent {
   final bool isVisible;
   final int maxLines;
 
-  ShowToggleEvent(this.showToggle,this.isVisible,this.maxLines);
+  ShowToggleEvent(this.showToggle, this.isVisible, this.maxLines);
 }
 

@@ -1,16 +1,21 @@
-import 'package:fcode_common/fcode_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:training_app/DiaryCard_page/DiaryCard_page.dart';
-
 import 'DiaryCard_bloc.dart';
+import 'DiaryCard_event.dart';
 import 'DiaryCard_state.dart';
 
 class DiaryCardView extends StatelessWidget {
+  final String title;
+  final String description;
+
+  DiaryCardView(this.title, this.description);
+
   @override
   Widget build(BuildContext context) {
     final diaryCardBloc = BlocProvider.of<DiaryCardBloc>(context);
     return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       decoration: BoxDecoration(
           color: diaryCardBloc.state.cardColor,
@@ -21,7 +26,7 @@ class DiaryCardView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
-            diaryCardBloc.state.title,
+            this.title,
             maxLines: 2,
             textAlign: TextAlign.left,
             style: TextStyle(
@@ -47,7 +52,7 @@ class DiaryCardView extends StatelessWidget {
           ),
           BlocBuilder<DiaryCardBloc, DiaryCardState>(
             builder: (context, state) {
-              return Text(diaryCardBloc.state.description,
+              return Text(this.description,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.black,

@@ -27,12 +27,9 @@ class DiaryCardState {
         isVisible: false,
         maxLines: 3,
         cardColor: Color(0xffB3E9FE),
-        description: "This is the desscription. This is the desscription. This is the desscription. "
-            "This is the desscription. This is the desscription. This is the desscription. This is the desscription. "
-            "This is the desscription. This is the desscription. This is the desscription. "
-            "This is the desscription. This is the desscription. This is the desscription. ",
-        subtitle: "This is the subtitle",
-        title: "This is the title",
+        description: "",
+        subtitle: "Mahela",
+        title: "",
         error: '',
       );
 

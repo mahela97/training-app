@@ -1,0 +1,1 @@
+const DIARYCARD = "DiaryCards";
