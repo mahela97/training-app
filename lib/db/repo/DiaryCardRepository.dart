@@ -16,6 +16,19 @@ class DiaryCardRepository extends FirebaseRepository<DiaryCard> {
   }
 
   @override
+  Future<DocumentReference> add({
+    @required DiaryCard item,
+    String type,
+    DocumentReference parent,
+  }) {
+    return super.add(
+      item: item,
+      type: DIARYCARD,
+      parent: null,
+    );
+  }
+
+  @override
   Map<String, dynamic> toMap(DiaryCard item) {
     // TODO: implement toMap
     return {
@@ -32,18 +45,5 @@ class DiaryCardRepository extends FirebaseRepository<DiaryCard> {
     // TODO: implement query
     return super
         .query(specification: specification, type: DIARYCARD, parent: null);
-  }
-
-  @override
-  Future<DocumentReference> add({
-    @required DiaryCard item,
-    String type,
-    DocumentReference parent,
-  }) {
-    return super.add(
-      item: item,
-      type: DIARYCARD,
-      parent: null,
-    );
   }
 }

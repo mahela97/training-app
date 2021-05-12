@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/db/models/DiaryCard.dart';
 import 'package:training_app/db/repo/DiaryCardRepository.dart';
-import 'package:training_app/widgets//DiaryCard_page/DiaryCard_page.dart';
+import 'package:training_app/view/DiaryHome_page/widgets//DiaryCard_page/DiaryCard_page.dart';
 import 'package:training_app/view/DiaryHome_page/DiaryHome_page.dart';
 
 import 'DiaryHome_bloc.dart';
@@ -60,8 +60,7 @@ class _DiaryHomeViewState extends State<DiaryHomeView> {
         homeDiaryBloc.add(ValidateTitleEvent(false));
         homeDiaryBloc.add(ValidateDescriptionEvent(false));
       }
-      if (!homeDiaryBloc.state.validateDescrip &&
-          !homeDiaryBloc.state.validateTitle) {
+      if (!this._title.isEmpty && !this._description.isEmpty) {
         diaryCardRepository.add(
             item: DiaryCard(
                 this._title, "Mahela", this._description, "0xffB3E9FE"));
@@ -78,22 +77,23 @@ class _DiaryHomeViewState extends State<DiaryHomeView> {
               image: AssetImage("lib/Images/wallpaper.jpg"), fit: BoxFit.fill),
         ),
         height: double.infinity,
-        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              BlocBuilder<DiaryHomeBloc, DiaryHomeState>(
-                  builder: (context, state) {
-                return Container(
-                  child: Material(
-                    color: Colors.transparent,
-                    child: TextField(
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 8),
+                child: Material(
+                  color: Colors.transparent,
+                  child: BlocBuilder<DiaryHomeBloc, DiaryHomeState>(
+                      builder: (context, state) {
+                    return TextField(
                       controller: _titleController,
                       decoration: InputDecoration(
                         fillColor: Color(0xff2E97DC),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(50.0),
+                            Radius.circular(20.0),
                           ),
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -105,17 +105,17 @@ class _DiaryHomeViewState extends State<DiaryHomeView> {
                             : null,
                       ),
                       onChanged: (text) => changeTitle(text),
-                    ),
-                  ),
-                );
-              }),
-              BlocBuilder<DiaryHomeBloc, DiaryHomeState>(
-                  builder: (context, state) {
-                return Container(
-                  margin: EdgeInsets.all(10),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: TextField(
+                    );
+                  }),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                child: Material(
+                  color: Colors.transparent,
+                  child: BlocBuilder<DiaryHomeBloc, DiaryHomeState>(
+                      builder: (context, state) {
+                    return TextField(
                       maxLines: 3,
                       controller: _descriptionController,
                       decoration: InputDecoration(
@@ -132,10 +132,10 @@ class _DiaryHomeViewState extends State<DiaryHomeView> {
                             : null,
                       ),
                       onChanged: (text) => changeDescription(text),
-                    ),
-                  ),
-                );
-              }),
+                    );
+                  }),
+                ),
+              ),
               SizedBox(
                   child: ElevatedButton(
                 onPressed: onSubmit,
@@ -149,6 +149,8 @@ class _DiaryHomeViewState extends State<DiaryHomeView> {
                     ))),
               )),
               BlocBuilder<DiaryHomeBloc, DiaryHomeState>(
+                buildWhen: (pre, current) =>
+                !identical(pre.diaryCard, current.diaryCard),///
                 builder: (context, state) {
                   final cards = state.diaryCard
                       .map((card) =>

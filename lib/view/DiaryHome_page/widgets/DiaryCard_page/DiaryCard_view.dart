@@ -39,7 +39,7 @@ class DiaryCardView extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Text(diaryCardBloc.state.subtitle,
+          Text("Mahela",
               maxLines: 1,
               textAlign: TextAlign.left,
               style: TextStyle(
@@ -51,6 +51,7 @@ class DiaryCardView extends StatelessWidget {
             height: 10,
           ),
           BlocBuilder<DiaryCardBloc, DiaryCardState>(
+            buildWhen: (pre, current) => pre.maxLines != current.maxLines,
             builder: (context, state) {
               return Text(this.description,
                   overflow: TextOverflow.ellipsis,
@@ -63,9 +64,7 @@ class DiaryCardView extends StatelessWidget {
                   maxLines: state.maxLines);
             },
           ),
-          SizedBox(
-            height: 10,
-          ),
+          SizedBox(height: 10),
           BlocBuilder<DiaryCardBloc, DiaryCardState>(
             builder: (context, state) {
               return TextButton(
@@ -76,10 +75,10 @@ class DiaryCardView extends StatelessWidget {
                         color: Color(0xff1A2125), fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    if (state.isVisible) {
-                      diaryCardBloc.add(ShowToggleEvent("Show More", false, 3));
+                    if (state.maxLines == 10) {
+                      diaryCardBloc.add(ShowToggleEvent("Show More", 3));
                     } else {
-                      diaryCardBloc.add(ShowToggleEvent("Show Less", true, 10));
+                      diaryCardBloc.add(ShowToggleEvent("Show Less", 10));
                     }
                   });
             },

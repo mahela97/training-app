@@ -22,9 +22,8 @@ class DiaryCardBloc extends Bloc<DiaryCardEvent, DiaryCardState> {
       case ShowToggleEvent:
         final showToggle = (event as ShowToggleEvent).showToggle;
         final maxLines = (event as ShowToggleEvent).maxLines;
-        final isVisible = (event as ShowToggleEvent).isVisible;
         yield state.clone(
-            showToggle: showToggle, maxLines: maxLines, isVisible: isVisible);
+            showToggle: showToggle, maxLines: maxLines);
         break;
     }
   }
