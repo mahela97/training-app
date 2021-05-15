@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fcode_bloc/fcode_bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:training_app/db/models/DiaryCard.dart';
+import 'package:training_app/db/models/diary_card.dart';
 import 'package:training_app/utils/db_util.dart';
 
 class DiaryCardRepository extends FirebaseRepository<DiaryCard> {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'DiaryCard_bloc.dart';
-import 'DiaryCard_view.dart';
+import 'diary_card_bloc.dart';
+import 'diary_card_view.dart';
 
 class DiaryCardProvider extends BlocProvider<DiaryCardBloc> {
   final String title;

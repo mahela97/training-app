@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_app/db/models/DiaryCard.dart';
+import 'package:training_app/db/models/diary_card.dart';
 
 @immutable
 class DiaryHomeState {

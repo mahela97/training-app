@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'DiaryCard_bloc.dart';
-import 'DiaryCard_event.dart';
-import 'DiaryCard_state.dart';
+import 'diary_card_bloc.dart';
+import 'diary_card_event.dart';
+import 'diary_card_state.dart';
 
 class DiaryCardView extends StatelessWidget {
   final String title;
@@ -51,7 +51,7 @@ class DiaryCardView extends StatelessWidget {
             height: 10,
           ),
           BlocBuilder<DiaryCardBloc, DiaryCardState>(
-            buildWhen: (pre, current) => pre.maxLines != current.maxLines,
+            buildWhen: (pre, current) => pre.showMore != current.showMore,
             builder: (context, state) {
               return Text(this.description,
                   overflow: TextOverflow.ellipsis,
@@ -61,7 +61,7 @@ class DiaryCardView extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.w100),
                   textAlign: TextAlign.left,
-                  maxLines: state.maxLines);
+                  maxLines: state.showMore ? 3 : 10);
             },
           ),
           SizedBox(height: 10),
@@ -69,16 +69,16 @@ class DiaryCardView extends StatelessWidget {
             builder: (context, state) {
               return TextButton(
                   child: Text(
-                    state.showToggle,
+                    state.showMore ? "Show More" : "Show Less",
                     textAlign: TextAlign.right,
                     style: TextStyle(
                         color: Color(0xff1A2125), fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    if (state.maxLines == 10) {
-                      diaryCardBloc.add(ShowToggleEvent("Show More", 3));
+                    if (state.showMore) {
+                      diaryCardBloc.add(ShowToggleEvent(false));
                     } else {
-                      diaryCardBloc.add(ShowToggleEvent("Show Less", 10));
+                      diaryCardBloc.add(ShowToggleEvent(true));
                     }
                   });
             },

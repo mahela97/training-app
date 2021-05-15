@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:training_app/db/models/DiaryCard.dart';
-import 'package:training_app/db/repo/DiaryCardRepository.dart';
-import 'package:training_app/view/DiaryHome_page/widgets//DiaryCard_page/DiaryCard_page.dart';
-import 'package:training_app/view/DiaryHome_page/DiaryHome_page.dart';
-
-import 'DiaryHome_bloc.dart';
-import 'DiaryHome_state.dart';
+import 'package:training_app/db/models/diary_card.dart';
+import 'package:training_app/db/repo/diary_card_repository.dart';
+import 'package:training_app/view/diary_home_page/diary_home_bloc.dart';
+import 'package:training_app/view/diary_home_page/diary_home_event.dart';
+import 'package:training_app/view/diary_home_page/widgets/diary_card_page/diary_card_provider.dart';
+import 'diary_home_bloc.dart';
+import 'diary_home_state.dart';
 
 class DiaryHomeView extends StatefulWidget {
   const DiaryHomeView({Key key}) : super(key: key);

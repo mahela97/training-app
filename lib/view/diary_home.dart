@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:training_app/view/DiaryHome_page/widgets//DiaryCard_page/DiaryCard_page.dart';
-import 'package:training_app/view/DiaryHome_page/DiaryHome_page.dart';
+import 'diary_home_page/diary_home_provider.dart';
 
 class DiaryHome extends StatelessWidget {
   @override

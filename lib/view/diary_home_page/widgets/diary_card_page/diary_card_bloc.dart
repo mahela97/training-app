@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:fcode_common/fcode_common.dart';
 import 'package:flutter/material.dart';
-import 'DiaryCard_event.dart';
-import 'DiaryCard_state.dart';
+import 'diary_card_event.dart';
+import 'diary_card_state.dart';
 
 class DiaryCardBloc extends Bloc<DiaryCardEvent, DiaryCardState> {
   static final log = Log("DiaryCardBloc");
@@ -20,10 +20,9 @@ class DiaryCardBloc extends Bloc<DiaryCardEvent, DiaryCardState> {
         yield state.clone(error: error);
         break;
       case ShowToggleEvent:
-        final showToggle = (event as ShowToggleEvent).showToggle;
-        final maxLines = (event as ShowToggleEvent).maxLines;
+        final showMore = (event as ShowToggleEvent).showMore;
         yield state.clone(
-            showToggle: showToggle, maxLines: maxLines);
+            showMore: showMore);
         break;
     }
   }

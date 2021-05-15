@@ -4,10 +4,11 @@ import 'package:fcode_bloc/fcode_bloc.dart';
 import 'package:fcode_common/fcode_common.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:training_app/db/repo/DiaryCardRepository.dart';
-import 'package:training_app/view/DiaryHome_page/DiaryHome_page.dart';
-import 'DiaryHome_event.dart';
-import 'DiaryHome_state.dart';
+import 'package:training_app/db/repo/diary_card_repository.dart';
+
+import 'diary_home_event.dart';
+import 'diary_home_state.dart';
+
 
 class DiaryHomeBloc extends Bloc<DiaryHomeEvent, DiaryHomeState> {
   static final log = Log("DiaryHomeBloc");

@@ -10,9 +10,8 @@ class ErrorEvent extends DiaryCardEvent {
 }
 
 class ShowToggleEvent extends DiaryCardEvent {
-  final String showToggle;
-  final int maxLines;
+  final bool showMore;
 
-  ShowToggleEvent(this.showToggle, this.maxLines);
+  ShowToggleEvent(this.showMore);
 }
 
